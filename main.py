@@ -120,7 +120,7 @@ if __name__ == '__main__':
     _event_status = check_events()
 
     run_hour = datetime.now().hour
-    is_events_available = events_available(event_status)
+    is_events_available = events_available(_event_status)
 
     logging.info(f"Run hour {run_hour=}.")
     logging.info(f"Events available {is_events_available=}.")
