@@ -89,7 +89,7 @@ def send_message(message, title, priority, tag):
             "Tags": tag
         }
     )
-    logging.info(f"Sent message {message}.")
+    logging.info(f"Sent message.")
 
 
 def check_events() -> dict[str, Status]:
@@ -104,13 +104,14 @@ def check_events() -> dict[str, Status]:
     return _event_status
 
 
-def should_send(_event_status: dict[str, Status]) -> bool:
+def should_send(is_events_available: bool, run_hour: int) -> bool:
     """
     Send if tickets are available or once a day at SEND_HOUR.
     """
-    if events_available(event_status):
+    logging.info(f"Run hour {now().hour}")
+    if is_events_available:
         return True
-    return now().hour == SEND_HOUR:
+    return run_hour == SEND_HOUR
 
 
 
@@ -118,7 +119,13 @@ if __name__ == '__main__':
     
     _event_status = check_events()
 
-    if should_send(_event_status):
+    run_hour = now().hour
+    is_events_available = events_available(event_status)
+
+    logging.info(f"Run hour {run_hour=}.")
+    logging.info(f"Events available {is_events_available=}.")
+    
+    if should_send(is_events_available, run_hour):
         send_message(
             get_message(_event_status),
             get_title(_event_status),
