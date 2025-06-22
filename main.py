@@ -100,9 +100,14 @@ def check_events() -> dict[str, Status]:
     _event_status = {}
 
     for event, url in URLS.items():
-        html = get_html(url)
-        soup = BeautifulSoup(html, 'html.parser')
-        status = get_status(soup)
+        try:
+            html = get_html(url)
+            soup = BeautifulSoup(html, 'html.parser')
+            status = get_status(soup)
+        except Exception as e:
+            logging.error(e)
+            status = Status.UNCLEAR
+        
         _event_status[event] = status
 
     return _event_status
