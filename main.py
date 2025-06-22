@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from requests import request
 from enum import Enum, auto
-from datetime.datetime import now
+from datetime import datetime
 
 logging.basicConfig(level=logging.INFO)
 
@@ -119,7 +119,7 @@ if __name__ == '__main__':
     
     _event_status = check_events()
 
-    run_hour = now().hour
+    run_hour = datetime.now().hour
     is_events_available = events_available(event_status)
 
     logging.info(f"Run hour {run_hour=}.")
