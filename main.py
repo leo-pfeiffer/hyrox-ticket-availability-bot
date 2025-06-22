@@ -108,7 +108,6 @@ def should_send(is_events_available: bool, run_hour: int) -> bool:
     """
     Send if tickets are available or once a day at SEND_HOUR.
     """
-    logging.info(f"Run hour {now().hour}")
     if is_events_available:
         return True
     return run_hour == SEND_HOUR
