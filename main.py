@@ -11,7 +11,6 @@ logging.basicConfig(level=logging.INFO)
 URLS = {
     "Anaheim": "https://hyrox.com/event/hyrox-anaheim/",
     "Chicago": "https://hyrox.com/event/hyrox-chicago/",
-    "Dallas": "https://hyrox.com/event/hyrox-dallas/"
 }
 
 SEND_HOUR = 12
